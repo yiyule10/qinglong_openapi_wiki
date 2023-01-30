@@ -4,7 +4,7 @@
 
 ## 一些缩写介绍：
 
-id：青龙应用的client_id
+_id：青龙应用的client_id
 
 secret：青龙应用的client_secret
 
@@ -23,7 +23,7 @@ URL:代表http://ip:5700，在这里我代指青龙的地址，新版的端口�
 示例：
 
 ```js
-const {data:{data:{token}}}=await axios.get(URL+'/open/auth/token',{params:{client_id:ID,client_secret:SECRET}})
+const {data:{data:{token}}}=await axios.get(URL+'/open/auth/token',{params:{client_id:_ID,client_secret:SECRET}})
 ```
 
 `ps`：此后的请求都要携带请求头，可以全局设置在`axios`里，也可以每次请求携带。
@@ -40,7 +40,7 @@ const {data:{data:{token}}}=await axios.get(URL+'/open/auth/token',{params:{clie
 const {data:{data:[{_id},...res]}}=await axios.post(URL+'/open/envs',[{name,value,remarks}],{headers:{Authorization:"Bearer "+token}})
 ```
 
-`ps`：参数需要以数组形式传递，否则格式验证出错。这里的_id是青龙返回的，用于后面的请求携带
+`ps`：参数需要以数组形式传递，否则格式验证出错。这里的id是青龙返回的，用于后面的请求携带
 
 ### 更新ck：
 
@@ -55,7 +55,7 @@ const {data:res}=await axios.put(URL+'/open/envs',{
     name,
     value,
     remarks,
-    _id},{
+    id},{
     headers:{
         Authorization:"Bearer "+token
     }
@@ -68,7 +68,7 @@ const {data:res}=await axios.put(URL+'/open/envs',{
 
 方法：delete
 
-参数：_id，需要删除的ck的id
+参数：id，需要删除的ck的id
 
 示例：
 
@@ -76,7 +76,7 @@ const {data:res}=await axios.put(URL+'/open/envs',{
 const {data:res}=await axios({
         url:URL+'/open/envs',
         method:'delete',
-        data:[_id],
+        data:[id],
         headers:{Authorization:"Bearer "+token}
 })
 ```
@@ -85,13 +85,13 @@ const {data:res}=await axios({
 
 方法：get
 
-参数：_id，参数直接拼接在`url`里面
+参数：id，参数直接拼接在`url`里面
 
 示例:
 
 ```js
 const {data:{data:{value,status,remarks=''}}}=await axios({
-        url:URL+'/open/envs/'+_id,
+        url:URL+'/open/envs/'+id,
         method:'get',
         headers:{Authorization:"Bearer "+token}
 })
